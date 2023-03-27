@@ -61,3 +61,98 @@ Migrating to CreateHeroPowers (20230327035140)
   [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
   [1m[36mHeroPower Create (0.7ms)[0m  [1m[32mINSERT INTO "hero_powers" ("hero_id", "power_id", "strength", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["hero_id", 3], ["power_id", 2], ["strength", "Weak"], ["created_at", "2023-03-27 04:21:06.640640"], ["updated_at", "2023-03-27 04:21:06.640640"]]
   [1m[36mTRANSACTION (7.6ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/heros" for 127.0.0.1 at 2023-03-27 07:23:14 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/heros"):
+  
+Started GET "/" for 127.0.0.1 at 2023-03-27 07:25:56 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /var/lib/gems/3.0.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /var/lib/gems/3.0.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.0ms | Allocations: 494)
+Completed 200 OK in 19ms (Views: 3.3ms | ActiveRecord: 0.0ms | Allocations: 4677)
+
+
+Started GET "/heroes" for 127.0.0.1 at 2023-03-27 07:26:07 +0300
+  
+ActionController::RoutingError (uninitialized constant HeroesController
+Did you mean?  HerosController
+               HeroPowersController):
+  
+Started GET "/heroes" for 127.0.0.1 at 2023-03-27 07:27:13 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/heroes"):
+  
+Started GET "/heroes" for 127.0.0.1 at 2023-03-27 07:27:19 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/heroes"):
+  
+Started GET "/heros" for 127.0.0.1 at 2023-03-27 07:27:27 +0300
+Processing by HerosController#index as HTML
+  [1m[36mHero Load (0.1ms)[0m  [1m[34mSELECT "heros".* FROM "heros"[0m
+  ↳ app/controllers/heros_controller.rb:4:in `index'
+Completed 200 OK in 20ms (Views: 13.5ms | ActiveRecord: 0.9ms | Allocations: 20799)
+
+
+Started GET "/heros/1" for 127.0.0.1 at 2023-03-27 07:29:55 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HerosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mHero Load (0.1ms)[0m  [1m[34mSELECT "heros".* FROM "heros" WHERE "heros"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/heros_controller.rb:8:in `show'
+  [1m[36mHeroPower Load (0.1ms)[0m  [1m[34mSELECT "hero_powers".* FROM "hero_powers" WHERE "hero_powers"."hero_id" = ?[0m  [["hero_id", 1]]
+  ↳ app/controllers/heros_controller.rb:8:in `show'
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers" WHERE "powers"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/controllers/heros_controller.rb:8:in `show'
+Completed 200 OK in 83ms (Views: 0.3ms | ActiveRecord: 1.7ms | Allocations: 74064)
+
+
+Started GET "/powers" for 127.0.0.1 at 2023-03-27 07:30:37 +0300
+Processing by PowersController#index as HTML
+  [1m[36mPower Load (0.1ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  ↳ app/controllers/powers_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 1103)
+
+
+Started GET "/powers/1" for 127.0.0.1 at 2023-03-27 07:30:44 +0300
+Processing by PowersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/powers_controller.rb:8:in `show'
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 1358)
+
+
+Started GET "/" for 127.0.0.1 at 2023-03-27 07:45:39 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /var/lib/gems/3.0.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /var/lib/gems/3.0.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 2.9ms | Allocations: 826)
+Completed 200 OK in 15ms (Views: 6.0ms | ActiveRecord: 0.0ms | Allocations: 6656)
+
+
+Started GET "/powers" for 127.0.0.1 at 2023-03-27 07:45:53 +0300
+Processing by PowersController#index as HTML
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  ↳ app/controllers/powers_controller.rb:4:in `index'
+Completed 200 OK in 49ms (Views: 15.6ms | ActiveRecord: 0.9ms | Allocations: 20732)
+
+
+Started GET "/heros" for 127.0.0.1 at 2023-03-27 07:46:26 +0300
+Processing by HerosController#index as HTML
+  [1m[36mHero Load (0.4ms)[0m  [1m[34mSELECT "heros".* FROM "heros"[0m
+  ↳ app/controllers/heros_controller.rb:4:in `index'
+Completed 200 OK in 24ms (Views: 15.7ms | ActiveRecord: 1.2ms | Allocations: 17544)
+
+
+Started GET "/heros/3" for 127.0.0.1 at 2023-03-27 07:46:34 +0300
+Processing by HerosController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mHero Load (0.2ms)[0m  [1m[34mSELECT "heros".* FROM "heros" WHERE "heros"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/heros_controller.rb:8:in `show'
+  [1m[36mHeroPower Load (0.2ms)[0m  [1m[34mSELECT "hero_powers".* FROM "hero_powers" WHERE "hero_powers"."hero_id" = ?[0m  [["hero_id", 3]]
+  ↳ app/controllers/heros_controller.rb:8:in `show'
+  [1m[36mPower Load (0.4ms)[0m  [1m[34mSELECT "powers".* FROM "powers" WHERE "powers"."id" IN (?, ?)[0m  [["id", 1], ["id", 2]]
+  ↳ app/controllers/heros_controller.rb:8:in `show'
+Completed 200 OK in 55ms (Views: 0.4ms | ActiveRecord: 1.8ms | Allocations: 32295)
+
+
